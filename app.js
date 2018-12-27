@@ -2,6 +2,8 @@ const express = require('express');
 
 const app = express();
 
+const bodyParser = require('body-parser');
+
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');
@@ -9,10 +11,20 @@ app.use((req, res, next) => {
   next();
 });
 
+app.use(bodyParser.json());
+
 app.use((req, res, next) => {
   console.log('abrieron la página papá!!!');
   next();
 });
+
+app.post('/api/recipes', (req, res, next) => {
+  console.log(req.body);
+  res.status(201).json({
+    message: 'Thing created successfully!'
+  });
+});
+
 app.use('/api/recipe', (req, res, next) => {
   const recipe = [
     {
@@ -34,6 +46,5 @@ app.use('/api/recipe', (req, res, next) => {
   ];
   res.status(200).json(recipe);
 });
-
 
 module.exports = app;
