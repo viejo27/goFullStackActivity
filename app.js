@@ -3,18 +3,37 @@ const express = require('express');
 const app = express();
 
 app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
+  next();
+});
+
+app.use((req, res, next) => {
   console.log('abrieron la página papá!!!');
   next();
 });
-
-app.use((req, res, next) => {
-  res.status(201);
-  next();
+app.use('/api/recipe', (req, res, next) => {
+  const recipe = [
+    {
+      _id: 'oeihfzeoi',
+      title: 'My first thing',
+      description: 'All of the info about my first thing',
+      imageUrl: '',
+      price: 4900,
+      userId: 'qsomihvqios',
+    },
+    {
+      _id: 'oeihfzeomoihi',
+      title: 'My second thing',
+      description: 'All of the info about my second thing',
+      imageUrl: '',
+      price: 2900,
+      userId: 'qsomihvqios',
+    },
+  ];
+  res.status(200).json(recipe);
 });
 
-app.use((req, res, next) => {
-  res.json({message: "funciona bien y esto es un JSON papá!!!"});
-  next();
-});
 
 module.exports = app;
