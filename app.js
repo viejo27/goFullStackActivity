@@ -120,7 +120,7 @@ app.use('/api/recipes', (req, res, next) => {
 });
 
 app.use((req, res, next) => {
-  console.log('abrieron la página papá!!!');
+  console.log('the page was opened!!!');
   res.end('Hello World');
   next();
 });
