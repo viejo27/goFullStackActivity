@@ -9,5 +9,6 @@ You can download the front-end to run the program, you have the instruction in t
 
 ## Back-End
 
-You can clone or download this code and executing `node server` or `nodemon server` in the command line.
+You need to clone or download this code, enter the folder an run `npm install`, then execute `node server` or `nodemon server` in the command line.
+
 You need to have `npm` installed.
